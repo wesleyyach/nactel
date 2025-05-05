@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.cabecalho {
+  background-color: #f57316;
+  padding: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0; /* Fixa o elemento no topo da tela */
+  left: 0; /* Fixa o elemento na lateral esquerda da tela */
+  width: 100%; /* Garante que o menu ocupe toda a largura da tela */
+  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+}
+
+.menu {
+  max-width: 1000px; /* Largura máxima do menu */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+
+.menu .logo img {
+  height: 80px;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: blue;
+  background-color: white;
+  padding: 10px 50px;
+  border: 1px solid blue;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s; /* efeito suave */
+}
+.menu li a:hover {
+  background-color: blue;
+  color: white;
+}
+.menu li a.active {
+  background-color: blue;
+  color: white;
+}
+/* rodape */
+.rodape-minimalista {
+  background-color: #f8f8f8;
+  color: #555;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.8em;
+  border-top: 1px solid #0b00a8; /* Adiciona a linha no topo */
+  max-width: 1200px; /* Largura máxima do rodapé (ajuste conforme necessário) */
+  margin: 0 auto; /* Centraliza o rodapé, criando espaço nas laterais */
+  margin-top: 150px; /* Ajuste o valor do espaço desejado */
+}
+
+.rodape-contato {
+  margin-bottom: 10px;
+}
+
+.rodape-contato p {
+  margin: 5px 0;
+}
+
+.rodape-contato a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.rodape-contato a:hover {
+  color: #333;
+}
+
+.rodape-copyright {
+  font-size: 0.75em;
+  color: #777;
+}
+
+/* Layout para alinhar em linha em telas maiores (opcional) */
+@media (min-width: 768px) {
+  .rodape-minimalista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+  }
+
+  .rodape-contato {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .rodape-copyright {
+    text-align: right;
+  }
+}
+.container {
+  display: flex; /* Coloca os itens lado a lado */
+  align-items: center; /* Alinha verticalmente os itens ao centro */
+  margin: 20px; /* Adiciona uma margem ao redor do container (opcional) */
+  border: 1px solid #ccc; /* Adiciona uma borda ao redor do container (opcional) */
+  border-radius: 5px; /* Arredonda os cantos do container (opcional) */
+  overflow: hidden; /* Garante que a imagem e o texto fiquem dentro das bordas arredondadas */
+  background-color: #ff8c00; /* Cor de fundo do container (opcional) */
+}
+
+.image-container {
+  flex: 1; /* A imagem ocupará 1 parte do espaço disponível */
+}
+
+.image-container img {
+  display: block; /* Remove o espaço extra abaixo da imagem */
+  width: 100%; /* Faz a imagem ocupar toda a largura do seu container */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+.text-block {
+  flex: 1; /* O bloco de texto ocupará 1 parte do espaço disponível */
+  background-color: #ff8c00; /* Cor laranja de fundo */
+  color: #0000ff; /* Cor azul do texto */
+  padding: 20px; /* Adiciona um espaçamento interno ao bloco de texto */
+}
+
+.text-block h1 {
+  margin-top: 0; /* Remove a margem superior padrão do h2 */
+  margin-bottom: 10px; /* Adiciona um pouco de espaço abaixo do título */
+  font-size: 2em; /* Ajusta o tamanho da fonte do título */
+}
+
+.text-block p {
+  margin-top: 0; /* Remove a margem superior padrão do parágrafo */
+  font-size: 1.1em; /* Ajusta o tamanho da fonte do parágrafo */
+}
+
+/* Para telas menores, você pode querer que a imagem e o texto fiquem um abaixo do outro */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Coloca os itens em coluna */
+  }
+
+  .image-container {
+    width: 100%; /* A imagem ocupa toda a largura */
+  }
+
+  .text-block {
+    width: 100%; /* O bloco de texto ocupa toda a largura */
+  }
+}
+.container2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  width: 400px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  height: 240px; /* ou outro valor fixo */
+  object-fit: cover; /* garante que a imagem preencha o espaço */
+}
+
+.card-caption {
+  background-color: #f37014;
+  color: #0000cc;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+}

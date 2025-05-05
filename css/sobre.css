@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.cabecalho {
+  background-color: #f57316;
+  padding: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0; /* Fixa o elemento no topo da tela */
+  left: 0; /* Fixa o elemento na lateral esquerda da tela */
+  width: 100%; /* Garante que o menu ocupe toda a largura da tela */
+  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+}
+
+.menu {
+  max-width: 1000px; /* Largura máxima do menu */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+
+.menu .logo img {
+  height: 80px;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: blue;
+  background-color: white;
+  padding: 10px 50px;
+  border: 1px solid blue;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s; /* efeito suave */
+}
+.menu li a:hover {
+  background-color: blue;
+  color: white;
+}
+.menu li a.active {
+  background-color: blue;
+  color: white;
+}
+/* rodape */
+.rodape-minimalista {
+  background-color: #f8f8f8;
+  color: #555;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.8em;
+  border-top: 1px solid #0b00a8; /* Adiciona a linha no topo */
+  max-width: 1200px; /* Largura máxima do rodapé (ajuste conforme necessário) */
+  margin: 0 auto; /* Centraliza o rodapé, criando espaço nas laterais */
+  margin-top: 150px; /* Ajuste o valor do espaço desejado */
+}
+
+.rodape-contato {
+  margin-bottom: 10px;
+}
+
+.rodape-contato p {
+  margin: 5px 0;
+}
+
+.rodape-contato a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.rodape-contato a:hover {
+  color: #333;
+}
+
+.rodape-copyright {
+  font-size: 0.75em;
+  color: #777;
+}
+
+/* Layout para alinhar em linha em telas maiores (opcional) */
+@media (min-width: 768px) {
+  .rodape-minimalista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+  }
+
+  .rodape-contato {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .rodape-copyright {
+    text-align: right;
+  }
+}
+.txt {
+  color: blue; /* Define a cor do texto para azul */
+  text-align: center; /* Centraliza o texto horizontalmente */
+  font-size: 70px; /* Aumenta o tamanho da fonte */
+  padding: 20px;
+  padding-top: 160px;
+}
+.txt2 {
+  color: blue; /* Define a cor do texto para azul */
+  text-align: start; /* Centraliza o texto horizontalmente */
+  font-size: 50px; /* Aumenta o tamanho da fonte */
+  padding: 25px;
+  padding-top: 160px;
+}
+.txt3 {
+  color: blue; /* Define a cor do texto para azul */
+  text-align: start; /* Centraliza o texto horizontalmente */
+  font-size: 20px; /* Aumenta o tamanho da fonte */
+  padding: 25px;
+}
+.image-container {
+  position: relative; /* Importante para posicionar o overlay */
+  display: inline-block; /* Ou block, dependendo do layout */
+  overflow: auto;
+}
+.image-container img {
+  display: block; /* Para evitar espaços extras abaixo da imagem */
+  width: 100%; /* Garante que a imagem preencha o container */
+  height: auto; /* Mantém a proporção da imagem */
+}
+.image-container {
+  background-image: url("img/sobrenactel.png"); /* Substitua pelo caminho da sua imagem */
+  background-attachment: fixed; /* Este é o segredo para o efeito parallax */
+  background-size: cover; /* Garante que a imagem cubra todo o container */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita a repetição da imagem */
+}

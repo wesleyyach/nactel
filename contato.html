@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nactel - Contato</title>
+    <link rel="icon" href="img/logoNactel.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/contato.css" />
+  </head>
+  <body>
+    <header class="cabecalho">
+      <nav class="menu">
+        <div class="logo">
+          <img src="img/logoNactel.png" alt="Logo Nactel" height="40" />
+        </div>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="projetos.html">Projetos</a></li>
+          <li><a href="contato.html" class="active">Contato</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1 class="txt">Contato</h1>
+    <div class="container">
+      <div class="image-container">
+        <img src="img/contato.png" alt="Defensas" />
+      </div>
+      <div class="text-block">
+        <p class="txt2">
+          Rua Padre Carapuceiro, 968, Torre Janete Costa, Sala 1303 Recife - PE
+          nactel@nactel.com.br | (81) 3467 6867
+        </p>
+        <form
+          action="https://formsubmit.co/auxiliar.adm@nactel.com.br"
+          method="POST"
+          id="formulario">
+
+          <input
+            type="hidden"
+            name="_next"/>
+
+          <label>Nome e Sobrenome</label>
+          <input type="text" name="name" required />
+
+          <label>Email *</label>
+          <input type="email" name="email" required />
+
+          <label>Mensagem</label>
+          <textarea name="message" rows="4" required></textarea>
+
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+    <footer class="rodape-minimalista">
+      <div class="rodape-contato">
+        <p><a href="tel:+5581XXXXYYYY">+55 81 3467-6867</a></p>
+        <p><a href="mailto:contato@nactel.com.br">nactel@nactel.com.br</a></p>
+        <p>Rua Padre Carapuceiro, 968, Boa Viagem, Recife - PE</p>
+      </div>
+      <div class="rodape-copyright">
+        <p>&copy; 2025 Nactel Construções. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
