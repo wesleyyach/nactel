@@ -3,20 +3,22 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Header Styles */
 .cabecalho {
   background-color: #f57316;
   padding: 10px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   position: fixed;
-  top: 0; /* Fixa o elemento no topo da tela */
-  left: 0; /* Fixa o elemento na lateral esquerda da tela */
-  width: 100%; /* Garante que o menu ocupe toda a largura da tela */
-  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .menu {
-  max-width: 1000px; /* Largura máxima do menu */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 30px;
@@ -41,27 +43,223 @@
   padding: 10px 50px;
   border: 1px solid blue;
   font-weight: bold;
-  transition: background-color 0.3s, color 0.3s; /* efeito suave */
+  transition: background-color 0.3s, color 0.3s;
 }
+
 .menu li a:hover {
   background-color: blue;
   color: white;
 }
+
 .menu li a.active {
   background-color: blue;
   color: white;
 }
-/* rodape */
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/sobrenactel.png');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 80px;
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* About Section */
+.about-section {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h2 {
+  color: #1a237e;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+.about-content p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+/* Values Section */
+.values-section {
+  padding: 80px 0;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.value-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+}
+
+.value-card i {
+  font-size: 2.5em;
+  color: #f57316;
+  margin-bottom: 20px;
+}
+
+.value-card h3 {
+  color: #1a237e;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.value-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Team Section */
+.team-section {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.team-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  color: #666;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.team-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 200px;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-item i {
+  font-size: 2.5em;
+  color: #f57316;
+  margin-bottom: 15px;
+}
+
+.stat-item h3 {
+  font-size: 2.5em;
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+.stat-item p {
+  color: #666;
+  font-size: 1.1em;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 80px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #1a237e, #0d47a1);
+  color: white;
+}
+
+.cta-section h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  font-size: 1.1em;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #f57316;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: 2px solid #f57316;
+}
+
+.cta-button:hover {
+  background-color: transparent;
+  color: #f57316;
+}
+
+/* Footer */
 .rodape-minimalista {
   background-color: #f8f8f8;
   color: #555;
   padding: 20px 0;
   text-align: center;
   font-size: 0.8em;
-  border-top: 1px solid #0b00a8; /* Adiciona a linha no topo */
-  max-width: 1200px; /* Largura máxima do rodapé (ajuste conforme necessário) */
-  margin: 0 auto; /* Centraliza o rodapé, criando espaço nas laterais */
-  margin-top: 150px; /* Ajuste o valor do espaço desejado */
+  border-top: 1px solid #0b00a8;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .rodape-contato {
@@ -87,7 +285,66 @@
   color: #777;
 }
 
-/* Layout para alinhar em linha em telas maiores (opcional) */
+/* Common Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #1a237e;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #1a237e;
+  border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-stats {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rodape-minimalista {
+    padding: 20px;
+  }
+
+  .rodape-contato {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .rodape-copyright {
+    text-align: center;
+  }
+}
+
 @media (min-width: 768px) {
   .rodape-minimalista {
     display: flex;
@@ -105,40 +362,62 @@
     text-align: right;
   }
 }
-.txt {
-  color: blue; /* Define a cor do texto para azul */
-  text-align: center; /* Centraliza o texto horizontalmente */
-  font-size: 70px; /* Aumenta o tamanho da fonte */
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
   padding: 20px;
-  padding-top: 160px;
 }
-.txt2 {
-  color: blue; /* Define a cor do texto para azul */
-  text-align: start; /* Centraliza o texto horizontalmente */
-  font-size: 50px; /* Aumenta o tamanho da fonte */
-  padding: 25px;
-  padding-top: 160px;
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
-.txt3 {
-  color: blue; /* Define a cor do texto para azul */
-  text-align: start; /* Centraliza o texto horizontalmente */
-  font-size: 20px; /* Aumenta o tamanho da fonte */
-  padding: 25px;
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
-.image-container {
-  position: relative; /* Importante para posicionar o overlay */
-  display: inline-block; /* Ou block, dependendo do layout */
-  overflow: auto;
+
+.close-modal:hover {
+  color: #f57316;
 }
-.image-container img {
-  display: block; /* Para evitar espaços extras abaixo da imagem */
-  width: 100%; /* Garante que a imagem preencha o container */
-  height: auto; /* Mantém a proporção da imagem */
+
+#caption {
+  margin: 15px auto;
+  display: block;
+  width: 80%;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 10px 0;
 }
-.image-container {
-  background-image: url("img/sobrenactel.png"); /* Substitua pelo caminho da sua imagem */
-  background-attachment: fixed; /* Este é o segredo para o efeito parallax */
-  background-size: cover; /* Garante que a imagem cubra todo o container */
-  background-position: center; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Evita a repetição da imagem */
+
+/* Clickable Image Styles */
+.clickable-image {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clickable-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }

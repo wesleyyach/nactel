@@ -1,35 +1,66 @@
-const southWest = L.latLng(-56, -96); // Coordenada mais ao sul e oeste
-const northEast = L.latLng(24, -30); // Coordenada mais ao norte e leste
+// Ajustando as coordenadas para cobrir apenas o Brasil
+const southWest = L.latLng(-33.75, -74.0); // Ponto mais ao sul e oeste do Brasil
+const northEast = L.latLng(5.27, -34.0);   // Ponto mais ao norte e leste do Brasil
 const bounds = L.latLngBounds(southWest, northEast);
-// Certifique-se de que este script seja carregado APÓS o Leaflet no HTML
-var map = L.map("map", {
-    scrollWheelZoom: false, // Desabilita o zoom com a roda do mouse
-    doubleClickZoom: false, // Desabilita o zoom com duplo clique
-    touchZoom: false, // Desabilita o zoom com toque em dispositivos móveis
-    boxZoom: false, // Desabilita o zoom com caixa (arrastar segurando shift)
-    minZoom: 3, // Nível de zoom mínimo permitido (mais afastado)
-    maxZoom: 6, // Nível de zoom máximo permitido (mais próximo)
-    maxBounds: bounds, // Define os limites máximos do mapa
-    maxBoundsViscosity: 1.0, // Impede o usuário de arrastar completamente para fora dos limites
-    zoomControl: true,
-    attributionControl: true
-}).setView([-15.7801, -47.9292], 4); // Coordenadas centrais e zoom inicial
 
-L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    bounds: bounds, // Opcional: informa a camada de tiles sobre os limites
-    subdomains: 'abcd',
-    maxZoom: 19
+// Configuração do mapa com foco no Brasil
+var map = L.map("map", {
+    scrollWheelZoom: true,
+    doubleClickZoom: true,
+    touchZoom: true,
+    boxZoom: true,
+    minZoom: 4,
+    maxZoom: 8,
+    maxBounds: bounds,
+    maxBoundsViscosity: 1.0,
+    zoomControl: false,
+    attributionControl: true
+}).setView([-15.7801, -47.9292], 4);
+
+// Adiciona controle de zoom personalizado
+L.control.zoom({
+    position: 'bottomright',
+    zoomInText: '+',
+    zoomOutText: '-'
 }).addTo(map);
 
-// Enhanced custom marker icon
+// Adiciona diferentes camadas de mapa
+const baseMaps = {
+    "Claro": L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        bounds: bounds,
+        subdomains: 'abcd',
+        maxZoom: 19
+    }),
+    "Satélite": L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
+        bounds: bounds,
+        maxZoom: 19
+    }),
+    "Terreno": L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://opentopomap.org">OpenTopoMap</a> contributors',
+        bounds: bounds,
+        maxZoom: 17
+    })
+};
+
+// Adiciona a camada padrão
+baseMaps["Claro"].addTo(map);
+
+// Adiciona controle de camadas
+L.control.layers(baseMaps, null, {
+    position: 'bottomright',
+    collapsed: false
+}).addTo(map);
+
+// Marcador personalizado
 var customMarkerIcon = L.divIcon({
     className: 'custom-marker',
     html: `
         <div class="marker-pin">
             <div class="marker-pulse"></div>
             <div class="marker-content">
-                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-building"></i>
             </div>
         </div>
     `,
@@ -38,145 +69,137 @@ var customMarkerIcon = L.divIcon({
     popupAnchor: [0, -42]
 });
 
-// Configure marker cluster group with custom styling
+// Configuração do cluster
 const markers = L.markerClusterGroup({
     maxClusterRadius: 80,
     spiderfyOnMaxZoom: true,
-    showCoverageOnHover: false,
+    showCoverageOnHover: true,
     zoomToBoundsOnClick: true,
-    disableClusteringAtZoom: 6,
-    iconCreateFunction: function(cluster) {
-        const count = cluster.getChildCount();
-        let size = 'small';
-        if (count > 10) size = 'medium';
-        if (count > 30) size = 'large';
-        
-        return L.divIcon({
-            html: `<div class="cluster-marker ${size}">${count}</div>`,
-            className: 'custom-cluster',
-            iconSize: L.point(40, 40)
-        });
-    }
+    disableClusteringAtZoom: 6
 });
 
-// Array com os dados dos seus parceiros (substitua pelos seus dados reais)
+// Array com os dados dos parceiros
 const parceiros = [
     {
         nome: "Petrobras",
         lat: -8.40583,
         lng: -35.06889,
+        estado: "Pernambuco",
         website: "https://petrobras.com.br/",
-        descricao:
-            "Uma breve descrição sobre o Parceiro A e sua colaboração conosco.",
-        imagem: "img/petrobras.png", // Caminho para a imagem do parceiro A
+        descricao: "Uma breve descrição sobre o Parceiro A e sua colaboração conosco.",
+        imagem: "img/petrobras.png",
     },
     {
         nome: "Concessionária Rota do Atlântico",
         lat: -8.40583,
         lng: -35.06889,
+        estado: "Pernambuco",
         website: "https://parceirob.com.br",
         descricao: "Detalhes sobre a parceria com o Parceiro B e seus serviços.",
-        imagem: "img/LogoRotadoatlantico.png", // Caminho para a imagem do parceiro B
+        imagem: "img/LogoRotadoatlantico.png",
     },
     {
         nome: "Esse",
         lat: -8.05206,
         lng: -34.92878,
+        estado: "Pernambuco",
         website: "https://www.esseeng.com.br/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoEsse.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoEsse.png",
     },
     {
         nome: "Jole",
         lat: -8.05206,
         lng: -34.92878,
+        estado: "Pernambuco",
         website: "https://parceiroc.com.br",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoJole.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoJole.png",
     },
     {
         nome: "A.B Corte Real",
         lat: -8.05206,
         lng: -34.92878,
+        estado: "Pernambuco",
         website: "https://abcortereal.com.br/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoAbcorteral.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoAbcorteral.png",
     },
     {
         nome: "Cosampa",
         lat: -3.71722,
         lng: -38.54306,
+        estado: "Ceará",
         website: "https://parceiroc.com.br",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoCosampa.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoCosampa.png",
     },
     {
         nome: "Insttale",
         lat: -3.71722,
         lng: -38.54306,
+        estado: "Ceará",
         website: "https://www.cosampa.com.br/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoInsttale.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoInsttale.png",
     },
     {
         nome: "Cortez",
         lat: -3.71722,
         lng: -38.54306,
+        estado: "Ceará",
         website: "https://cortezengenharia.com.br/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoCortez.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoCortez.png",
     },
     {
         nome: "Tcpav",
         lat: -5.795,
         lng: -35.20944,
+        estado: "Rio Grande do Norte",
         website: "https://parceiroc.com.br",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoTcpav.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoTcpav.png",
     },
     {
         nome: "Dois A",
         lat: -5.795,
         lng: -35.20944,
+        estado: "Rio Grande do Norte",
         website: "https://www.doisa.com/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoDoisa.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoDoisa.png",
     },
     {
         nome: "SVC",
         lat: -12.97167,
-        lng:  -38.50167,
+        lng: -38.50167,
+        estado: "Bahia",
         website: "https://www.svcconstrucoes.com.br/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoSvc.png", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoSvc.png",
     },
     {
         nome: "Construtora Castilho",
         lat: -25.42972,
         lng: -49.27194,
+        estado: "Paraná",
         website: "https://www.castilho.com.br/",
-        descricao:
-            "Informações importantes sobre nossa colaboração com o Parceiro C.",
-        imagem: "img/logoCastilho.webp", // Caminho para a imagem do parceiro C
+        descricao: "Informações importantes sobre nossa colaboração com o Parceiro C.",
+        imagem: "img/logoCastilho.webp",
     }
 ];
 
-// Enhanced popup content
+// Adiciona os marcadores ao mapa
 parceiros.forEach((parceiro) => {
     const marker = L.marker([parceiro.lat, parceiro.lng], { icon: customMarkerIcon }).bindPopup(
         `<div class="custom-popup">
             <div class="popup-header">
                 <img src="${parceiro.imagem}" alt="${parceiro.nome}" class="popup-logo">
-                <h3>${parceiro.nome}</h3>
+                <div class="popup-title">
+                    <h3>${parceiro.nome}</h3>
+                    <span class="estado-badge">${parceiro.estado}</span>
+                </div>
             </div>
             <div class="popup-content">
                 <p>${parceiro.descricao}</p>
@@ -193,9 +216,72 @@ parceiros.forEach((parceiro) => {
     markers.addLayer(marker);
 });
 
-map.addLayer(markers); // Adiciona o grupo de marcadores ao mapa
+// Adiciona o grupo de marcadores ao mapa
+map.addLayer(markers);
 
-// Add custom styles
+// Adiciona controle de filtro por estado
+const estados = [...new Set(parceiros.map(p => p.estado))];
+const filtroEstados = L.control({ position: 'topleft' });
+
+filtroEstados.onAdd = function() {
+    const div = L.DomUtil.create('div', 'filtro-estados');
+    div.innerHTML = `
+        <div class="filtro-header">
+            <h4>Filtrar por Estado</h4>
+            <button class="filtro-toggle">▼</button>
+        </div>
+        <div class="filtro-content">
+            <div class="filtro-contador">
+                <span>Total de Parceiros: ${parceiros.length}</span>
+            </div>
+            <div class="filtro-lista">
+                ${estados.map(estado => {
+                    const count = parceiros.filter(p => p.estado === estado).length;
+                    return `
+                        <label class="filtro-item">
+                            <input type="checkbox" value="${estado}" checked>
+                            <span>${estado} (${count})</span>
+                        </label>
+                    `;
+                }).join('')}
+            </div>
+        </div>
+    `;
+    return div;
+};
+
+filtroEstados.addTo(map);
+
+// Adiciona legenda
+const legenda = L.control({ position: 'bottomleft' });
+
+legenda.onAdd = function() {
+    const div = L.DomUtil.create('div', 'legenda');
+    div.innerHTML = `
+        <div class="legenda-header">
+            <h4>Legenda</h4>
+        </div>
+        <div class="legenda-content">
+            <div class="legenda-item">
+                <div class="legenda-marker">
+                    <i class="fas fa-building"></i>
+                </div>
+                <span>Parceiro</span>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-cluster">
+                    <span>3</span>
+                </div>
+                <span>Grupo de Parceiros</span>
+            </div>
+        </div>
+    `;
+    return div;
+};
+
+legenda.addTo(map);
+
+// Estilos CSS
 const style = document.createElement('style');
 style.textContent = `
     .custom-marker {
@@ -207,7 +293,7 @@ style.textContent = `
         width: 30px;
         height: 30px;
         border-radius: 50% 50% 50% 0;
-        background: #FF4500; /* Orange */
+        background: #f57316;
         transform: rotate(-45deg);
         box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         transition: all 0.3s ease;
@@ -215,6 +301,7 @@ style.textContent = `
 
     .marker-pin:hover {
         transform: rotate(-45deg) scale(1.2);
+        background: #ff8c00;
     }
 
     .marker-pulse {
@@ -222,7 +309,7 @@ style.textContent = `
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background: rgba(255, 69, 0, 0.3); /* Orange with opacity */
+        background: rgba(245, 115, 22, 0.3);
         animation: pulse 2s infinite;
     }
 
@@ -235,80 +322,61 @@ style.textContent = `
         font-size: 14px;
     }
 
-    .custom-cluster {
-        background: transparent;
-    }
-
-    .cluster-marker {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #FF4500; /* Orange */
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        transition: all 0.3s ease;
-    }
-
-    .cluster-marker.small {
-        background: #FFD700; /* Yellow */
-    }
-
-    .cluster-marker.medium {
-        background: #FF4500; /* Orange */
-    }
-
-    .cluster-marker.large {
-        background: #FF0000; /* Red */
-    }
-
-    .custom-popup-container .leaflet-popup-content-wrapper {
+    .custom-popup-container {
         border-radius: 8px;
-        padding: 0;
-        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .custom-popup {
-        padding: 0;
+        padding: 10px;
     }
 
     .popup-header {
-        background: #f8f9fa;
-        padding: 15px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .popup-title {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .estado-badge {
+        background: #f57316;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-block;
     }
 
     .popup-logo {
-        max-width: 120px;
-        height: auto;
-        margin-bottom: 10px;
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        border-radius: 4px;
     }
 
     .popup-header h3 {
         margin: 0;
-        color: #333;
-        font-size: 1.2em;
+        color: #1a237e;
+        font-size: 16px;
     }
 
     .popup-content {
-        padding: 15px;
-    }
-
-    .popup-content p {
-        margin: 0 0 15px 0;
-        color: #666;
-        font-size: 0.9em;
-        line-height: 1.4;
+        color: #333;
+        font-size: 14px;
     }
 
     .popup-link {
         display: inline-block;
-        padding: 8px 15px;
-        background: #1E90FF; /* Blue */
+        margin-top: 10px;
+        padding: 5px 10px;
+        background: #f57316;
         color: white;
         text-decoration: none;
         border-radius: 4px;
@@ -316,7 +384,7 @@ style.textContent = `
     }
 
     .popup-link:hover {
-        background: #4169E1; /* Darker blue on hover */
+        background: #ff8c00;
     }
 
     @keyframes pulse {
@@ -329,5 +397,185 @@ style.textContent = `
             opacity: 0;
         }
     }
+
+    /* Estilos do Filtro */
+    .filtro-estados {
+        background: white;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        min-width: 200px;
+    }
+
+    .filtro-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .filtro-header h4 {
+        margin: 0;
+        color: #1a237e;
+        font-size: 14px;
+    }
+
+    .filtro-toggle {
+        background: none;
+        border: none;
+        color: #1a237e;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .filtro-contador {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .filtro-lista {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .filtro-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 5px 0;
+        font-size: 12px;
+        color: #333;
+    }
+
+    .filtro-item input[type="checkbox"] {
+        margin: 0;
+    }
+
+    /* Estilos da Legenda */
+    .legenda {
+        background: white;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .legenda-header h4 {
+        margin: 0 0 10px 0;
+        color: #1a237e;
+        font-size: 14px;
+    }
+
+    .legenda-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .legenda-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: #333;
+    }
+
+    .legenda-marker {
+        width: 20px;
+        height: 20px;
+        background: #f57316;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 10px;
+    }
+
+    .legenda-cluster {
+        width: 20px;
+        height: 20px;
+        background: #f57316;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 10px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .filtro-estados {
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            right: 10px;
+            z-index: 1000;
+            max-width: none;
+        }
+
+        .filtro-content {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .legenda {
+            position: fixed;
+            bottom: 70px;
+            left: 10px;
+            right: 10px;
+            z-index: 1000;
+            max-width: none;
+        }
+
+        .legenda-content {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    }
 `;
 document.head.appendChild(style);
+
+// Adiciona funcionalidade de filtro
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.filtro-item input[type="checkbox"]');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const estado = this.value;
+            const checked = this.checked;
+            
+            markers.clearLayers();
+            
+            parceiros.forEach((parceiro) => {
+                if (checked || parceiro.estado !== estado) {
+                    const marker = L.marker([parceiro.lat, parceiro.lng], { icon: customMarkerIcon }).bindPopup(
+                        `<div class="custom-popup">
+                            <div class="popup-header">
+                                <img src="${parceiro.imagem}" alt="${parceiro.nome}" class="popup-logo">
+                                <div class="popup-title">
+                                    <h3>${parceiro.nome}</h3>
+                                    <span class="estado-badge">${parceiro.estado}</span>
+                                </div>
+                            </div>
+                            <div class="popup-content">
+                                <p>${parceiro.descricao}</p>
+                                <a href="${parceiro.website}" target="_blank" class="popup-link">
+                                    <i class="fas fa-external-link-alt"></i> Visitar Site
+                                </a>
+                            </div>
+                        </div>`,
+                        {
+                            maxWidth: 300,
+                            className: 'custom-popup-container'
+                        }
+                    );
+                    markers.addLayer(marker);
+                }
+            });
+        });
+    });
+});

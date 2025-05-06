@@ -6,6 +6,13 @@
     <title>Nactel - Contato</title>
     <link rel="icon" href="img/logoNactel.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/contato.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      (function() {
+        emailjs.init("-r4wXipuUIQoJIXY3");
+      })();
+    </script>
   </head>
   <body>
     <header class="cabecalho">
@@ -21,48 +28,151 @@
         </ul>
       </nav>
     </header>
-    <h1 class="txt">Contato</h1>
-    <div class="container">
-      <div class="image-container">
-        <img src="img/contato.png" alt="Defensas" />
-      </div>
-      <div class="text-block">
-        <p class="txt2">
-          Rua Padre Carapuceiro, 968, Torre Janete Costa, Sala 1303 Recife - PE
-          nactel@nactel.com.br | (81) 3467 6867
-        </p>
-        <form
-          action="https://formsubmit.co/auxiliar.adm@nactel.com.br"
-          method="POST"
-          id="formulario">
 
-          <input
-            type="hidden"
-            name="_next"/>
-
-          <label>Nome e Sobrenome</label>
-          <input type="text" name="name" required />
-
-          <label>Email *</label>
-          <input type="email" name="email" required />
-
-          <label>Mensagem</label>
-          <textarea name="message" rows="4" required></textarea>
-
-          <button type="submit">Enviar</button>
-        </form>
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Entre em Contato</h1>
+        <p>Estamos prontos para atender suas necessidades</p>
       </div>
     </div>
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2>Informações de Contato</h2>
+            <div class="info-card">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h3>Endereço</h3>
+                <p>Rua Padre Carapuceiro, 968</p>
+                <p>Torre Janete Costa, Sala 1303</p>
+                <p>Boa Viagem, Recife - PE</p>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-phone-alt"></i>
+              <div>
+                <h3>Telefone</h3>
+                <p><a href="tel:+558134676867">+55 81 3467-6867</a></p>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p><a href="mailto:nactel@nactel.com.br">nactel@nactel.com.br</a></p>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h3>Horário de Atendimento</h3>
+                <p>Segunda a Sexta: 8h às 18h</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h2>Envie sua Mensagem</h2>
+            <form id="contact-form" onsubmit="return sendEmail(event)">
+              <div class="form-group">
+                <label for="name">Nome Completo *</label>
+                <input type="text" id="name" name="name" required placeholder="Digite seu nome completo" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="Digite seu email" />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Assunto</label>
+                <input type="text" id="subject" name="subject" placeholder="Digite o assunto" />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Mensagem *</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Digite sua mensagem"></textarea>
+              </div>
+
+              <button type="submit" class="submit-button">
+                <i class="fas fa-paper-plane"></i>
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <div class="container">
+        <h2>Nossa Localização</h2>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3754833864833!2d-34.8936!3d-8.1197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab1f0c0c0c0c0c0%3A0x0!2sRua%20Padre%20Carapuceiro%2C%20968%20-%20Boa%20Viagem%2C%20Recife%20-%20PE!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" 
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
     <footer class="rodape-minimalista">
       <div class="rodape-contato">
-        <p><a href="tel:+5581XXXXYYYY">+55 81 3467-6867</a></p>
-        <p><a href="mailto:contato@nactel.com.br">nactel@nactel.com.br</a></p>
+        <p><a href="tel:+558134676867">+55 81 3467-6867</a></p>
+        <p><a href="mailto:nactel@nactel.com.br">nactel@nactel.com.br</a></p>
         <p>Rua Padre Carapuceiro, 968, Boa Viagem, Recife - PE</p>
       </div>
       <div class="rodape-copyright">
         <p>&copy; 2025 Nactel Construções. Todos os direitos reservados.</p>
       </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+      function sendEmail(e) {
+        e.preventDefault();
+        
+        // Mostrar indicador de carregamento
+        const submitButton = document.querySelector('.submit-button');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        submitButton.disabled = true;
+
+        const templateParams = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value
+        };
+
+        emailjs.send('service_s0tvmer', 'template_37x9fxd', templateParams)
+          .then(function(response) {
+            // Sucesso
+            alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+            document.getElementById('contact-form').reset();
+          }, function(error) {
+            // Erro
+            alert('Erro ao enviar mensagem. Por favor, tente novamente.');
+          })
+          .finally(function() {
+            // Restaurar botão
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+          });
+
+        return false;
+      }
+    </script>
   </body>
 </html>

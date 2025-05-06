@@ -6,6 +6,7 @@
     <link rel="icon" href="img/logoNactel.ico" type="image/x-icon">
     <title>Nactel - Projetos</title>
     <link rel="stylesheet" href="css/projeto.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   </head>
   <body>
     <header class="cabecalho">
@@ -21,50 +22,157 @@
         </ul>
       </nav>
     </header>
-    <div class="container">
-      <div class="image-container">
-        <img src="img/defensametalica1.png" alt="Defensas" />
-      </div>
-      <div class="text-block">
-        <h1>Projetos</h1>
-        <p>
-          Aqui temos alguns dos nossos projetos feitos pela Nactel Construções.
-        </p>
+
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Nossos Projetos</h1>
+        <p>Conheça nossa trajetória de excelência em engenharia e construção</p>
       </div>
     </div>
-    <div class="container2">
-        <div class="card">
-          <img src="img/defensametalica2.png" alt="Defensa Metálica Semi-Maleável">
-          <div class="card-caption">DEFENSA METÁLICA SEMI–MALEÁVEL</div>
+
+    <section class="intro-section">
+      <div class="container">
+        <h2>Excelência em Cada Projeto</h2>
+        <p class="intro-text">
+          A Nactel Construções se destaca pela qualidade e inovação em seus projetos. 
+          Nossa equipe de engenheiros e técnicos especializados trabalha com as mais 
+          modernas tecnologias para garantir a segurança e durabilidade de cada obra.
+        </p>
+        <div class="stats-container">
+          <div class="stat-item">
+            <i class="fas fa-building"></i>
+            <h3>1500+</h3>
+            <p>Projetos Entregues</p>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-map-marked-alt"></i>
+            <h3>10+</h3>
+            <p>Estados Atendidos</p>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-users"></i>
+            <h3>40+</h3>
+            <p>Profissionais Especializados</p>
+          </div>
         </div>
-    
-        <div class="card">
-          <img src="img/defensametalica4.png" alt="Transição de Defensa Metálica com Barreira de Concreto">
-          <div class="card-caption">TRANSIÇÃO DE DEFENSA METÁLICA<br>COM BARREIRA DE CONCRETO</div>
-        </div>
-
-        <div class="card">
-            <img src="img/tunel3.png" alt="Transição de Defensa Metálica com Barreira de Concreto">
-            <div class="card-caption">TÚNEL LINER COM TÚNEL PILOTO</div>
-          </div>
-
-          <div class="card">
-            <img src="img/tunel4.png" alt="Transição de Defensa Metálica com Barreira de Concreto">
-            <div class="card-caption">TÚNEL LINER</div>
-          </div>
-
-          <div class="card">
-            <img src="img/semiportico.png" alt="Transição de Defensa Metálica com Barreira de Concreto">
-            <div class="card-caption">SEMI PÓRTICO RODOVIÁRIO</div>
-          </div>
-
-          <div class="card">
-            <img src="img/defensametalica5.png" alt="Transição de Defensa Metálica com Barreira de Concreto">
-            <div class="card-caption">DEFENSA DUPLA SOBREPOSTA</div>
-          </div>
-    
-        <!-- Você pode adicionar mais cards aqui -->
       </div>
+    </section>
+
+    <section class="projects-grid">
+      <div class="container">
+        <h2>Projetos em Destaque</h2>
+        <div class="container2">
+          <div class="card">
+            <img src="img/defensametalica2.png" alt="Defensa Metálica Semi-Maleável" class="clickable-image" onclick="openModal(this)">
+            <div class="card-content">
+              <h3>DEFENSA METÁLICA SEMI–MALEÁVEL</h3>
+              <p>Sistema de proteção rodoviária de alta performance, projetado para absorver impactos e proteger motoristas.</p>
+              <div class="card-features">
+                <span><i class="fas fa-check"></i> Alta Resistência</span>
+                <span><i class="fas fa-check"></i> Durabilidade</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="card">
+            <img src="img/defensametalica4.png" alt="Transição de Defensa Metálica com Barreira de Concreto" class="clickable-image" onclick="openModal(this)">
+            <div class="card-content">
+              <h3>TRANSIÇÃO DE DEFENSA METÁLICA COM BARREIRA DE CONCRETO</h3>
+              <p>Solução integrada que combina a flexibilidade da defensa metálica com a robustez do concreto.</p>
+              <div class="card-features">
+                <span><i class="fas fa-check"></i> Proteção Múltipla</span>
+                <span><i class="fas fa-check"></i> Adaptabilidade</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="img/tunel3.png" alt="Túnel Liner com Túnel Piloto" class="clickable-image" onclick="openModal(this)">
+            <div class="card-content">
+              <h3>TÚNEL LINER COM TÚNEL PILOTO</h3>
+              <p>Tecnologia avançada em túneis, garantindo segurança e eficiência na construção.</p>
+              <div class="card-features">
+                <span><i class="fas fa-check"></i> Tecnologia Avançada</span>
+                <span><i class="fas fa-check"></i> Segurança</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="img/tunel4.png" alt="Túnel Liner" class="clickable-image" onclick="openModal(this)">
+            <div class="card-content">
+              <h3>TÚNEL LINER</h3>
+              <p>Sistema de revestimento de túneis que garante estabilidade e durabilidade.</p>
+              <div class="card-features">
+                <span><i class="fas fa-check"></i> Estabilidade</span>
+                <span><i class="fas fa-check"></i> Longa Vida Útil</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="img/portico2.jpg" alt="Semi Pórtico Rodoviário" class="clickable-image" onclick="openModal(this)">
+            <div class="card-content">
+              <h3>SEMI PÓRTICO RODOVIÁRIO</h3>
+              <p>Estrutura de suporte que combina funcionalidade e estética para vias urbanas.</p>
+              <div class="card-features">
+                <span><i class="fas fa-check"></i> Design Moderno</span>
+                <span><i class="fas fa-check"></i> Funcionalidade</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="img/defensametalica5.png" alt="Defensa Dupla Sobreposta" class="clickable-image" onclick="openModal(this)">
+            <div class="card-content">
+              <h3>DEFENSA DUPLA SOBREPOSTA</h3>
+              <p>Sistema de proteção dupla que oferece máxima segurança para vias de alta velocidade.</p>
+              <div class="card-features">
+                <span><i class="fas fa-check"></i> Proteção Dupla</span>
+                <span><i class="fas fa-check"></i> Alta Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <h2>O Que Dizem Nossos Clientes</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <i class="fas fa-quote-left"></i>
+              <p>"A Nactel entregou um projeto de excelência, superando nossas expectativas em qualidade e prazo."</p>
+              <div class="testimonial-author">
+                <strong>Eng. Carlos Silva</strong>
+                <span>Diretor de Infraestrutura - DER</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <i class="fas fa-quote-left"></i>
+              <p>"Profissionalismo e compromisso com a qualidade em todos os projetos realizados."</p>
+              <div class="testimonial-author">
+                <strong>Dra. Ana Santos</strong>
+                <span>Gerente de Projetos - Concessionária</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Quer Conhecer Mais Sobre Nossos Projetos?</h2>
+        <p>Entre em contato conosco para discutir suas necessidades e descobrir como podemos ajudar.</p>
+        <a href="contato.html" class="cta-button">Fale Conosco</a>
+      </div>
+    </section>
+
     <footer class="rodape-minimalista">
       <div class="rodape-contato">
         <p><a href="tel:+5581XXXXYYYY">+55 81 3467-6867</a></p>
@@ -75,5 +183,36 @@
         <p>&copy; 2025 Nactel Construções. Todos os direitos reservados.</p>
       </div>
     </footer>
+
+    <!-- Modal para visualização de imagens -->
+    <div id="imageModal" class="modal">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage">
+      <div id="caption"></div>
+    </div>
+
+    <script>
+      function openModal(img) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+      }
+
+      // Fechar o modal quando clicar fora da imagem
+      window.onclick = function(event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
   </body>
 </html>

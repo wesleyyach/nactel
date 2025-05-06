@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="img/logoNactel.ico" type="image/x-icon">
-    <title>Nactel - Contato</title>
+    <title>Nactel - Sobre Nós</title>
     <link rel="stylesheet" href="css/sobre.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   </head>
   <body>
     <header class="cabecalho">
@@ -21,40 +22,135 @@
         </ul>
       </nav>
     </header>
-    <body>
-      <h1 class="txt">Sobre</h1>
-      <div class="image-container">
-        <div class="image-content">
-          <img src="img/sobrenactel.png" alt="Funcionários" />
+
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Sobre a Nactel</h1>
+        <p>Conheça nossa história, valores e compromisso com a excelência</p>
+      </div>
+    </div>
+
+    <section class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="img/sobrenactel.png" alt="Equipe Nactel" class="clickable-image" onclick="openModal(this)" />
+          </div>
+          <div class="about-content">
+            <h2>Nossa História</h2>
+            <p>
+              A Nactel Construções nasceu do sonho de transformar a infraestrutura do Brasil através de soluções inovadoras e sustentáveis. Com mais de 20 anos de experiência no mercado, nos especializamos em projetos de engenharia civil, com foco em segurança rodoviária e infraestrutura urbana.
+            </p>
+            <p>
+              Nossa trajetória é marcada por conquistas significativas, incluindo a execução de mais de 1500 projetos em todo o país, atendendo 10 estados brasileiros com excelência e compromisso.
+            </p>
+          </div>
         </div>
       </div>
-      <h2 class="txt2">Nossa História</h2>
-        <p class="txt3">
-            Essa é a sua página Quem Somos. Esse espaço é uma ótima oportunidade para contar quem você é,<br>
-            o que você faz e o que o seu site tem a oferecer. Seus usuários estão interessados em saber mais<br>
-            sobre você, então não tenha medo de compartilhar histórias pessoais para criar um conteúdo<br>
-            amigável.</p>
-         <p class="txt3">
-            Cada site tem uma história e seus visitantes querem ouvir a sua. Esse espaço é uma ótima<br>
-            oportunidade para compartilhar informações pessoais com os seus seguidores. Inclua histórias e<br>
-            fatos interessantes para manter os leitores envolvidos.</p>
-            <p class="txt3">
-                Clique duas vezes na caixa de texto para editar o conteúdo e certifique-se de adicionar as<br>
-                informações relevantes que você deseja que os visitantes saibam. Se você é um negócio, fale sobre<br>
-                como começou e compartilhe sua história. Explique seus valores, seu comprometimento e como<br>
-                você se destaca no mercado. Adicione uma foto ou vídeo para ter um engajamento melhor.
-            </p>
+    </section>
 
-      <footer class="rodape-minimalista">
-        <div class="rodape-contato">
-          <p><a href="tel:+5581XXXXYYYY">+55 81 3467-6867</a></p>
-          <p><a href="mailto:contato@nactel.com.br">nactel@nactel.com.br</a></p>
-          <p>Rua Padre Carapuceiro, 968, Boa Viagem, Recife - PE</p>
+    <section class="values-section">
+      <div class="container">
+        <h2>Nossos Valores</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <i class="fas fa-medal"></i>
+            <h3>Excelência</h3>
+            <p>Comprometimento com a qualidade em cada projeto, buscando sempre a perfeição em nossas entregas.</p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-handshake"></i>
+            <h3>Compromisso</h3>
+            <p>Dedicação total aos nossos clientes, cumprindo prazos e mantendo transparência em todas as etapas.</p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Inovação</h3>
+            <p>Busca constante por novas tecnologias e soluções que agreguem valor aos nossos projetos.</p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-leaf"></i>
+            <h3>Sustentabilidade</h3>
+            <p>Desenvolvimento de projetos que respeitam o meio ambiente e promovem práticas sustentáveis.</p>
+          </div>
         </div>
-        <div class="rodape-copyright">
-          <p>&copy; 2025 Nactel Construções. Todos os direitos reservados.</p>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="container">
+        <h2>Nossa Equipe</h2>
+        <p class="team-intro">
+          Contamos com uma equipe de mais de 40 profissionais altamente qualificados, incluindo engenheiros, técnicos e especialistas em diversas áreas da construção civil.
+        </p>
+        <div class="team-stats">
+          <div class="stat-item">
+            <i class="fas fa-user-graduate"></i>
+            <h3>40+</h3>
+            <p>Profissionais Especializados</p>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-award"></i>
+            <h3>20+</h3>
+            <p>Anos de Experiência</p>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-project-diagram"></i>
+            <h3>1500+</h3>
+            <p>Projetos Entregues</p>
+          </div>
         </div>
-      </footer>
-    </body>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Faça Parte da Nossa História</h2>
+        <p>Estamos sempre em busca de novos desafios e parcerias para continuar transformando a infraestrutura do Brasil.</p>
+        <a href="contato.html" class="cta-button">Entre em Contato</a>
+      </div>
+    </section>
+
+    <footer class="rodape-minimalista">
+      <div class="rodape-contato">
+        <p><a href="tel:+5581XXXXYYYY">+55 81 3467-6867</a></p>
+        <p><a href="mailto:contato@nactel.com.br">nactel@nactel.com.br</a></p>
+        <p>Rua Padre Carapuceiro, 968, Boa Viagem, Recife - PE</p>
+      </div>
+      <div class="rodape-copyright">
+        <p>&copy; 2025 Nactel Construções. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Modal para visualização de imagens -->
+    <div id="imageModal" class="modal">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage">
+      <div id="caption"></div>
+    </div>
+
+    <script>
+      function openModal(img) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+      }
+
+      // Fechar o modal quando clicar fora da imagem
+      window.onclick = function(event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
   </body>
 </html>
