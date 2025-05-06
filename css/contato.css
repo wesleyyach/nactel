@@ -106,94 +106,180 @@
   }
 }
 .txt {
-  color: blue; /* Define a cor do texto para azul */
-  text-align: center; /* Centraliza o texto horizontalmente */
-  font-size: 70px; /* Aumenta o tamanho da fonte */
-  padding: 20px;
-  padding-top: 160px;
+  color: #1a237e;
+  text-align: center;
+  font-size: 3.5em;
+  padding: 120px 20px 40px;
+  position: relative;
+  font-weight: 700;
 }
+
+.txt::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #f57316;
+  border-radius: 2px;
+}
+
+h2 {
+  color: #1a237e;
+  text-align: center;
+  font-size: 3.5em;
+  padding: 60px 20px 40px;
+  position: relative;
+  font-weight: 700;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #1a237e;
+  border-radius: 2px;
+}
+
 .txt2 {
-  color: blue; /* Define a cor do texto para azul */
-  text-align: center; /* Centraliza o texto horizontalmente */
-  font-size: 30px; /* Aumenta o tamanho da fonte */
+  color: #1a237e;
+  text-align: center;
+  font-size: 1.2em;
   padding: 20px;
-  padding-bottom: 90px;
+  margin-bottom: 40px;
+  line-height: 1.6;
 }
+
 .container {
-  display: flex; /* Coloca os itens lado a lado */
-  align-items: center; /* Alinha verticalmente os itens ao centro */
-  margin: 20px; /* Adiciona uma margem ao redor do container (opcional) */
-  border: 1px solid #ccc; /* Adiciona uma borda ao redor do container (opcional) */
-  border-radius: 5px; /* Arredonda os cantos do container (opcional) */
-  overflow: hidden; /* Garante que a imagem e o texto fiquem dentro das bordas arredondadas */
-  background-color: #ff8c00; /* Cor de fundo do container (opcional) */
+  display: flex;
+  align-items: stretch;
+  margin: 0 auto 60px;
+  max-width: 1200px;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 15px 40px rgba(245, 115, 22, 0.15);
 }
 
 .image-container {
-  flex: 1; /* A imagem ocupará 1 parte do espaço disponível */
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f57316, #ff8c00);
 }
 
 .image-container img {
-  display: block; /* Remove o espaço extra abaixo da imagem */
-  width: 100%; /* Faz a imagem ocupar toda a largura do seu container */
-  height: auto; /* Mantém a proporção da imagem */
-  border-radius: 200px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: transform 0.5s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
 }
 
 .text-block {
-  flex: 1; /* O bloco de texto ocupará 1 parte do espaço disponível */
-  background-color: #ff8c00; /* Cor laranja de fundo */
-  color: #0000ff; /* Cor azul do texto */
-  padding: 20px; /* Adiciona um espaçamento interno ao bloco de texto */
-}
-
-.text-block h1 {
-  margin-top: 0; /* Remove a margem superior padrão do h2 */
-  margin-bottom: 10px; /* Adiciona um pouco de espaço abaixo do título */
-  font-size: 2em; /* Ajusta o tamanho da fonte do título */
-}
-
-.text-block p {
-  margin-top: 0; /* Remove a margem superior padrão do parágrafo */
-  font-size: 1.1em; /* Ajusta o tamanho da fonte do parágrafo */
-}
-
-/* Para telas menores, você pode querer que a imagem e o texto fiquem um abaixo do outro */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column; /* Coloca os itens em coluna */
-  }
-
-  .image-container {
-    width: 100%; /* A imagem ocupa toda a largura */
-  }
-
-  .text-block {
-    width: 100%; /* O bloco de texto ocupa toda a largura */
-  }
+  flex: 1;
+  background: #d4e4ff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 form {
-  max-width: 400px;
-  margin: auto;
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  width: 100%;
+  background: #e8f0fe;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(26, 35, 126, 0.15);
+}
+
+label {
+  color: #1a237e;
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 5px;
 }
 
 input,
 textarea {
-  border: none;
-  border-bottom: 2px solid blue;
-  background: transparent;
-  color: blue;
-  padding: 5px;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #c5d3f0;
+  border-radius: 8px;
+  background: white;
+  color: #1a237e;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1a237e;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.15);
 }
 
 button {
-  background: blue;
+  background: linear-gradient(135deg, #f57316, #ff8c00);
   color: white;
-  padding: 10px;
+  padding: 15px 30px;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 6px 20px rgba(245, 115, 22, 0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 115, 22, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .image-container {
+    height: 300px;
+  }
+
+  .text-block {
+    padding: 30px 20px;
+  }
+
+  .txt {
+    font-size: 2.5em;
+    padding: 100px 20px 30px;
+  }
+
+  form {
+    padding: 0 10px;
+  }
 }

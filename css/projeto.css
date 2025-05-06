@@ -106,84 +106,146 @@
   }
 }
 .container {
-  display: flex; /* Coloca os itens lado a lado */
-  align-items: center; /* Alinha verticalmente os itens ao centro */
-  margin: 20px; /* Adiciona uma margem ao redor do container (opcional) */
-  border: 1px solid #ccc; /* Adiciona uma borda ao redor do container (opcional) */
-  border-radius: 5px; /* Arredonda os cantos do container (opcional) */
-  overflow: hidden; /* Garante que a imagem e o texto fiquem dentro das bordas arredondadas */
-  background-color: #ff8c00; /* Cor de fundo do container (opcional) */
+  display: flex;
+  align-items: center;
+  margin: 120px auto 40px;
+  max-width: 1200px;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f57316, #ff8c00);
+  box-shadow: 0 10px 30px rgba(245, 115, 22, 0.2);
 }
 
 .image-container {
-  flex: 1; /* A imagem ocupará 1 parte do espaço disponível */
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
 }
 
 .image-container img {
-  display: block; /* Remove o espaço extra abaixo da imagem */
-  width: 100%; /* Faz a imagem ocupar toda a largura do seu container */
-  height: auto; /* Mantém a proporção da imagem */
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
 }
 
 .text-block {
-  flex: 1; /* O bloco de texto ocupará 1 parte do espaço disponível */
-  background-color: #ff8c00; /* Cor laranja de fundo */
-  color: #0000ff; /* Cor azul do texto */
-  padding: 20px; /* Adiciona um espaçamento interno ao bloco de texto */
+  flex: 1;
+  background: transparent;
+  color: #1a237e; /* Azul escuro para o texto */
+  padding: 40px;
+  position: relative;
 }
 
 .text-block h1 {
-  margin-top: 0; /* Remove a margem superior padrão do h2 */
-  margin-bottom: 10px; /* Adiciona um pouco de espaço abaixo do título */
-  font-size: 2em; /* Ajusta o tamanho da fonte do título */
+  margin: 0 0 20px;
+  font-size: 2.5em;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  color: #1a237e; /* Azul escuro para o título */
+}
+
+.text-block h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #1a237e; /* Azul escuro para a linha decorativa */
+  border-radius: 2px;
 }
 
 .text-block p {
-  margin-top: 0; /* Remove a margem superior padrão do parágrafo */
-  font-size: 1.1em; /* Ajusta o tamanho da fonte do parágrafo */
+  margin: 0;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #0d47a1; /* Azul médio para o parágrafo */
 }
 
-/* Para telas menores, você pode querer que a imagem e o texto fiquem um abaixo do outro */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column; /* Coloca os itens em coluna */
-  }
-
-  .image-container {
-    width: 100%; /* A imagem ocupa toda a largura */
-  }
-
-  .text-block {
-    width: 100%; /* O bloco de texto ocupa toda a largura */
-  }
-}
 .container2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .card {
-  width: 400px;
+  width: 100%;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(245, 115, 22, 0.1);
+  border-radius: 12px;
   overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(245, 115, 22, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(245, 115, 22, 0.2);
 }
 
 .card img {
   width: 100%;
-  display: block;
-  height: 240px; /* ou outro valor fixo */
-  object-fit: cover; /* garante que a imagem preencha o espaço */
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
 }
 
 .card-caption {
-  background-color: #f37014;
-  color: #0000cc;
-  font-weight: bold;
+  background: linear-gradient(135deg, #f57316, #ff8c00);
+  color: #1a237e; /* Azul escuro para o texto do card */
+  font-weight: 600;
   text-align: center;
-  padding: 15px;
-  font-size: 16px;
+  padding: 20px;
+  font-size: 1.1em;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-caption {
+  background: linear-gradient(135deg, #ff8c00, #f57316);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 100px 20px 30px;
+  }
+
+  .image-container img {
+    height: 300px;
+  }
+
+  .text-block {
+    padding: 30px;
+  }
+
+  .text-block h1 {
+    font-size: 2em;
+  }
+
+  .container2 {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
