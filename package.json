@@ -1,5 +1,28 @@
 {
   "dependencies": {
     "leaflet": "^1.9.4"
-  }
+  },
+  "name": "sitenactel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesleyyach/nactel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wesleyyach/nactel/issues"
+  },
+  "homepage": "https://github.com/wesleyyach/nactel#readme",
+  "description": ""
 }

@@ -78,6 +78,35 @@ const markers = L.markerClusterGroup({
     disableClusteringAtZoom: 6
 });
 
+function buildPopupHtml(parceiro) {
+    const safeWebsite = parceiro.website || '#';
+    return `<div class="custom-popup">
+            <div class="popup-header">
+                <img src="${parceiro.imagem}" alt="${parceiro.nome}" class="popup-logo">
+                <div class="popup-title">
+                    <h3>${parceiro.nome}</h3>
+                    <span class="estado-badge">${parceiro.estado}</span>
+                </div>
+            </div>
+            <div class="popup-content">
+                <p>${parceiro.descricao}</p>
+                <a href="${safeWebsite}" target="_blank" rel="noopener noreferrer" class="popup-link">
+                    <i class="fas fa-external-link-alt"></i> Visitar Site
+                </a>
+            </div>
+        </div>`;
+}
+
+function createMarker(parceiro) {
+    return L.marker([parceiro.lat, parceiro.lng], { icon: customMarkerIcon }).bindPopup(
+        buildPopupHtml(parceiro),
+        {
+            maxWidth: 300,
+            className: 'custom-popup-container'
+        }
+    );
+}
+
 // Array com os dados dos parceiros
 const parceiros = [
     {
@@ -190,34 +219,18 @@ const parceiros = [
     }
 ];
 
-// Adiciona os marcadores ao mapa
-parceiros.forEach((parceiro) => {
-    const marker = L.marker([parceiro.lat, parceiro.lng], { icon: customMarkerIcon }).bindPopup(
-        `<div class="custom-popup">
-            <div class="popup-header">
-                <img src="${parceiro.imagem}" alt="${parceiro.nome}" class="popup-logo">
-                <div class="popup-title">
-                    <h3>${parceiro.nome}</h3>
-                    <span class="estado-badge">${parceiro.estado}</span>
-                </div>
-            </div>
-            <div class="popup-content">
-                <p>${parceiro.descricao}</p>
-                <a href="${parceiro.website}" target="_blank" class="popup-link">
-                    <i class="fas fa-external-link-alt"></i> Visitar Site
-                </a>
-            </div>
-        </div>`,
-        {
-            maxWidth: 300,
-            className: 'custom-popup-container'
+function renderMarkers(selectedEstados) {
+    markers.clearLayers();
+    parceiros.forEach((parceiro) => {
+        if (!selectedEstados || selectedEstados.has(parceiro.estado)) {
+            markers.addLayer(createMarker(parceiro));
         }
-    );
-    markers.addLayer(marker);
-});
+    });
+}
 
 // Adiciona o grupo de marcadores ao mapa
 map.addLayer(markers);
+renderMarkers(null);
 
 // Adiciona controle de filtro por estado
 const estados = [...new Set(parceiros.map(p => p.estado))];
@@ -232,7 +245,7 @@ filtroEstados.onAdd = function() {
         </div>
         <div class="filtro-content">
             <div class="filtro-contador">
-                <span>Total de Parceiros: ${parceiros.length}</span>
+                <span>Exibindo: ${parceiros.length} de ${parceiros.length}</span>
             </div>
             <div class="filtro-lista">
                 ${estados.map(estado => {
@@ -247,6 +260,8 @@ filtroEstados.onAdd = function() {
             </div>
         </div>
     `;
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
     return div;
 };
 
@@ -407,6 +422,14 @@ style.textContent = `
         min-width: 200px;
     }
 
+    .filtro-estados.is-collapsed .filtro-content {
+        display: none;
+    }
+
+    .filtro-estados.is-collapsed .filtro-toggle {
+        transform: rotate(-90deg);
+    }
+
     .filtro-header {
         display: flex;
         justify-content: space-between;
@@ -426,6 +449,7 @@ style.textContent = `
         color: #1a237e;
         cursor: pointer;
         font-size: 12px;
+        transition: transform 0.2s ease;
     }
 
     .filtro-contador {
@@ -539,43 +563,39 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Adiciona funcionalidade de filtro
-document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.filtro-item input[type="checkbox"]');
-    
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const estado = this.value;
-            const checked = this.checked;
-            
-            markers.clearLayers();
-            
-            parceiros.forEach((parceiro) => {
-                if (checked || parceiro.estado !== estado) {
-                    const marker = L.marker([parceiro.lat, parceiro.lng], { icon: customMarkerIcon }).bindPopup(
-                        `<div class="custom-popup">
-                            <div class="popup-header">
-                                <img src="${parceiro.imagem}" alt="${parceiro.nome}" class="popup-logo">
-                                <div class="popup-title">
-                                    <h3>${parceiro.nome}</h3>
-                                    <span class="estado-badge">${parceiro.estado}</span>
-                                </div>
-                            </div>
-                            <div class="popup-content">
-                                <p>${parceiro.descricao}</p>
-                                <a href="${parceiro.website}" target="_blank" class="popup-link">
-                                    <i class="fas fa-external-link-alt"></i> Visitar Site
-                                </a>
-                            </div>
-                        </div>`,
-                        {
-                            maxWidth: 300,
-                            className: 'custom-popup-container'
-                        }
-                    );
-                    markers.addLayer(marker);
-                }
-            });
+function setupFiltro() {
+    const root = document.querySelector('.filtro-estados');
+    if (!root) return;
+
+    const toggle = root.querySelector('.filtro-toggle');
+    const counter = root.querySelector('.filtro-contador span');
+
+    function getSelectedEstados() {
+        const checkboxes = root.querySelectorAll('.filtro-item input[type="checkbox"]');
+        return new Set(Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value));
+    }
+
+    function applyFilter() {
+        const selectedEstados = getSelectedEstados();
+        renderMarkers(selectedEstados);
+
+        if (counter) {
+            const total = parceiros.length;
+            const visible = parceiros.filter(p => selectedEstados.has(p.estado)).length;
+            counter.textContent = `Exibindo: ${visible} de ${total}`;
+        }
+    }
+
+    if (toggle) {
+        toggle.setAttribute('type', 'button');
+        toggle.addEventListener('click', () => {
+            root.classList.toggle('is-collapsed');
         });
-    });
-});
+    }
+
+    const checkboxes = root.querySelectorAll('.filtro-item input[type="checkbox"]');
+    checkboxes.forEach(cb => cb.addEventListener('change', applyFilter));
+    applyFilter();
+}
+
+setupFiltro();

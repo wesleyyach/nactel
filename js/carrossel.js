@@ -7,18 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let isTransitioning = false;
     let touchStartX = 0;
     let touchEndX = 0;
-
-    // Adicionar descrições para cada slide
-    const descriptions = [
-        "Defensas Metálicas de Alta Qualidade",
-        "Sistema de Proteção Rodoviária",
-        "Túneis com Tecnologia Avançada",
-        "Soluções em Engenharia Civil"
-    ];
+    const descriptions = Array.from(slides).map((img) => {
+        const fromData = img.getAttribute('data-description');
+        if (fromData && fromData.trim()) return fromData.trim();
+        const fromAlt = img.getAttribute('alt');
+        if (fromAlt && fromAlt.trim()) return fromAlt.trim();
+        return '';
+    });
 
     // Criar container para descrições
     const descriptionContainer = document.createElement('div');
     descriptionContainer.className = 'slide-description';
+    descriptionContainer.setAttribute('aria-live', 'polite');
     container.parentElement.appendChild(descriptionContainer);
 
     // Criar indicadores
@@ -61,12 +61,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateDescription() {
-        descriptionContainer.textContent = descriptions[currentIndex];
-        descriptionContainer.setAttribute('aria-live', 'polite');
+        descriptionContainer.textContent = descriptions[currentIndex] || '';
     }
 
     function goToSlide(index) {
         if (isTransitioning) return;
+        if (index === currentIndex) {
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateIndicators();
+            updateDescription();
+            return;
+        }
         isTransitioning = true;
         
         // Adicionar classe de fade out
